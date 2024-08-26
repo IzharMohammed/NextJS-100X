@@ -1,24 +1,21 @@
 import axios from "axios";
 
 interface User {
-  title: string
+  username: string,
+  email: string
 }
 async function getUserData() {
-  const response = await axios.get('https://backend.izharmohammed21.workers.dev/api/v1/allBlogs');
+  const response = await axios.get('http://localhost:3000/api/user');
   return response.data;
 }
 export default async function Home() {
   const userData = await getUserData();
-  console.log(userData);
+  console.log('user data', userData);
 
 
   return (
     <>
-      {
-        userData.map((user: User) => (
-          <li>{user.title}</li>
-        ))
-      }
+      <div>{userData.username}</div>
     </>
   );
 }
